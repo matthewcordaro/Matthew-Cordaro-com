@@ -34,7 +34,7 @@ async function generate() {
 
   allPosts.sort((a, b) => new Date(b.date) - new Date(a.date))
   allPosts.forEach((post) => {
-      if (name.charAt(0) === '_') return
+      if (post.name && post.name.charAt(0) === '_') return
       feed.item(post)
   })
   await fs.writeFile('./public/feed.xml', feed.xml({ indent: true }))
