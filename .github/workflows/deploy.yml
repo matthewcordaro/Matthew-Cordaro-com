@@ -23,7 +23,7 @@ jobs:
         run: pnpm install
 
       - name: Build project
-        run: pnpm build
+        run: pnpm build --verbose
 
       - name: Sync S3 bucket
         env:
