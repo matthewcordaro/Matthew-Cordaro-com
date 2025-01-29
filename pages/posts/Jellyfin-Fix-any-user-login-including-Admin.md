@@ -55,13 +55,15 @@ For this procedure you will need administrative access to update Jellyfin's SQLi
 1) Download and install an SQLite editor. It's easy, Google is your friend. I'll wait here...
 2) Open up your server's `data` folder where Jellyfin is located. _Note: For Windows this is something like `%PROGRAMDATA%\Jellyfin\Server\data` Linux is probably `/var/lib/jellyfin/data/`._
 3) As a privileged user (administrator) open jellyfin.db with your SQLite software. _Note: make sure you know how to update the DB, this includes executing the statement AND writing out the changes._
-4) Execute the following SQL statement. Make sure to change 'admin' to your admin user.
+4) Execute the following SQL statement while making sure to change `admin` to your admin user on both lines.
 
     ```sql
+    -- Reset the login attempts & enable the user 
     UPDATE Users SET InvalidLoginAttemptCount = 0 WHERE Username = 'admin';
     UPDATE Permissions SET Value = 0 WHERE Kind = 2 AND UserId IN (SELECT Id FROM Users WHERE Username = 'admin');
     ```
-
+    See [Jellyfin Permission Kinds](https://github.com/jellyfin/jellyfin/blob/master/Jellyfin.Data/Enums/PermissionKind.cs)
+   
 5) Shutdown Jellyfin
 6) Write out the SQL Changes, close the database.
 7) Restart Jellyfin and try resetting the admin password again as above with the JSON file.
