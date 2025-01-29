@@ -15,14 +15,14 @@ export default function Nextra({Component, pageProps}) {
                 />
                 <link
                     rel="preload"
-                    href="/fonts/JetBrainsMono-Medium.woff2"
+                    href="fonts/JetBrainsMono-Regular.woff2"
                     as="font"
                     type="font/woff2"
                     crossOrigin="anonymous"
                 />
                 <link
                     rel="preload"
-                    href="/fonts/JetBrainsMono-MediumItalic.woff2"
+                    href="/fonts/JetBrainsMono-Italic.woff2"
                     as="font"
                     type="font/woff2"
                     crossOrigin="anonymous"
