@@ -8,7 +8,7 @@ author: Matthew Cordaro
 
 Setting up a GitHub Action workflow that deploys a site to an S3 bucket whenever there's a change to the main branch.
 
-In fact, this guids was created from deploying this very site to S3!
+When using this guide it will deploy with HTTP.  S3 doesn't support HTTPS outright.  For that you will need Cloud Front. See AWS documentation for details on getting that working. 
 
 ---
 
