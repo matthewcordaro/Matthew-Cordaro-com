@@ -2,7 +2,7 @@
 title: "React Hooks: useEffect, useState, & useRef in Next.js"
 date: 2025/1/28
 description: A brief on useEffect, useState, & useRef in React & Next
-tag: react, next.js
+tag: React, NextJS
 author: Matthew Cordaro
 ---
 
