@@ -2,7 +2,7 @@
 title: "Automate DDNS on AWS with Docker"
 date: 2025/2/3
 description: How to get DDNS on AWS's Route53 working fast with a automated locally run docker image
-tag: AWS, Docker, Dns, 
+tag: AWS, Docker, DNS 
 author: Matthew Cordaro
 ---
 
