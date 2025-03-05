@@ -10,7 +10,8 @@ author: Matthew Cordaro
 
 ## Introduction
 
-[EasyAudioToggle](applications/EasyAudioToggle.msi) is a simple Windows app that lets you switch between your audio devices—like speakers or headphones—with a quick double click on its tray icon. Right-click it to tweak settings or close it. A friendly first-run message helps you get started and suggests keeping the icon handy in your system tray. Download it today, and if it makes your life easier, maybe buy me a coffee!
+[EasyAudioToggle](/applications/EasyAudioToggle.msi) is a simple Windows app that lets you switch between your audio 
+devices—like speakers or headphones—with a quick double click on its tray icon. Right-click it to tweak settings or close it. A friendly first-run message helps you get started and suggests keeping the icon handy in your system tray. Download it today, and if it makes your life easier, maybe buy me a coffee!
 
 
 ## Birth 
