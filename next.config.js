@@ -7,8 +7,7 @@ if (process.env.NODE_ENV === 'production') {
     nextConfig = {
         output: 'export',
         images: {
-            loader: 'imgix',
-            path: 'https://www.matthewcordaro.com/',
+            unoptimized: true,
         },
         // Add these configurations for proper routing
         trailingSlash: true,
