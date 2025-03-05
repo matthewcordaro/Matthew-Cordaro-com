@@ -1,6 +1,6 @@
 ---
 title: "Building Easy Audio Toggle"
-date: 2025/2/4
+date: 2025/23/5
 description: A journey in .NET 8 and WiX.
 tag: C#, WiX, .NET
 author: Matthew Cordaro
