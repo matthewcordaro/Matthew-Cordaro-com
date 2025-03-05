@@ -10,6 +10,10 @@ if (process.env.NODE_ENV === 'production') {
             loader: 'imgix',
             path: 'https://www.matthewcordaro.com/',
         },
+        // Add these configurations for proper routing
+        trailingSlash: true,
+        basePath: '',
+        assetPrefix: '/',
     }
 }
 
