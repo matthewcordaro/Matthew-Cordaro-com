@@ -3,6 +3,8 @@ frontend:
   phases:
     preBuild:
       commands:
+        - ls -la  # List files in the directory (use `dir` if on Windows-based build image)
+        - cat package.json  # Print package.json contents
         - corepack enable
         - corepack prepare pnpm@10 --activate
         - pnpm install
