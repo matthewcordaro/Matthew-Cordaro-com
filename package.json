@@ -1,6 +1,7 @@
 {
   "private": true,
   "license": "MIT",
+  "packageManager": "pnpm@10.5.2",
   "scripts": {
     "dev": "next",
     "build": "node ./scripts/gen-rss.js && next build && next export",
