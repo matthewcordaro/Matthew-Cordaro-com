@@ -1,12 +1,14 @@
 version: 1
 frontend:
+  runtime: node18
   phases:
     preBuild:
       commands:
-        - npm install
+        - corepack enable
+        - pnpm install
     build:
       commands:
-        - npm run build
+        - pnpm build
   artifacts:
     baseDirectory: out
     files:
