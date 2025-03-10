@@ -33,5 +33,11 @@ yarn-error.log*
 # vercel
 .vercel
 
+# The feed is generated
 public/feed.xml
+
+# WebStorm
 /.idea/
+
+# Environment Variables
+.ENV
