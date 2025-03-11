@@ -1,6 +1,6 @@
 ---
 title: "AWS: Setting up Amplify Deployment Notifications via SNS"
-date: 2025/2/10
+date: 2025/3/10
 description: How to Set Up Email Notifications for AWS Amplify Deployments Using Amazon SNS
 tag: AWS, Amplify, SNS 
 author: Matthew Cordaro
@@ -34,27 +34,39 @@ To receive notifications, you need to subscribe your email address to the SNS to
 6. Click the provided link, in the confirmation email that was sent, to confirm the subscription
 
 ## Add / Modify IAM Role for Amplify
-1. Create a role if necessary
-2. Add default
-3. incluce an inline policy for SNS allow Publish
-    ```json
-    {
-        "Version": "2012-10-17",
-        "Statement": [
-            {
-                "Effect": "Allow",
-                "Action": "sns:Publish",
-                "Resource": "arn:aws:sns:your-region:your-account-id:AmplifyDeploymentNotifications"
-            }
-        ]
-    }
-    ```
-4. Click _Next_
-5. 
+
+To enable Amplify access to push notifications to the SNS topic, you will need to create a service role.
+
+1. Navigate to **IAM Roles** and click on _Create role_
+2. For _Step 1_, set _Tursted entity type_ to _AWS service_ and for _Use case_ select _Amplify_
+3. Click _Next_ twice to get to _Step 3_
+4. Give it a name like `AmplifyServiceRole` click _Create role_
+5. Select the role you just created in the list
+6. Under _Permission policies_ select the dropdown menu that says _Add permission_ and select _Create inline policy_
+7. Set the editor to JSON and paste in the following
+   ```json
+   {
+       "Version": "2012-10-17",
+       "Statement": [
+           {
+               "Effect": "Allow",
+               "Action": "sns:Publish",
+               "Resource": "<your-arn>"
+           }
+       ]
+   }
+   ```
+8. Replace `<your-arn>` with the arn from the SNS Topic you created before
+9. Click _Next_
+10. Navigate to your Amplify app in the AWS Amplify Console 
+11. In the menu, go to _App settings > IAM Roles_
+12. Set the _Service role_ to the role you just created like `AmplifyServiceRole`
+13. Click _Save_
 
 ## Add an SNS Topic ARN Environment Variable to Amplify
 
-To prevent sensitive information, like your SNS topic ARN, from appearing in your source code on GitHub, store it as an environment variable in Amplify.
+To prevent your SNS topic ARN, from appearing in your source code on GitHub,
+store it as an environment variable in Amplify.
 
 1. Navigate to your Amplify app in the AWS Amplify Console
 2. In the menu, go to _Hosting > Environment_ variables
@@ -69,7 +81,6 @@ AWS Amplify supports lifecycle hooks that run custom scripts after deployments. 
 
 1. Create and navigate to the `amplify/hooks` folder in your project.
 2. Create or update the `post-deploy.js` file with the following code:
-
     ```javascript
     const AWS = require('aws-sdk');
     const sns = new AWS.SNS();
@@ -143,9 +154,8 @@ AWS Amplify supports lifecycle hooks that run custom scripts after deployments. 
     
     run();
     ```
-   
 3. Note `const notificationBranches = ['main', 'dev'];`  Feel free to change this to the branches you want to get 
-   deploy notifications for.
+deploy notifications for.
 4. Make sure to update your `dependencies` in `package.json` to include latest `aws-sdk`.
 5. Commit and push your changes to the branch you want to deploy.
 
@@ -153,7 +163,7 @@ AWS Amplify supports lifecycle hooks that run custom scripts after deployments. 
 
 Amplify should now be executing the `post-deploy.js` script after any deployment is complete. Check your email inbox for notifications when deploying the set branches. If you don't receive an email, double-check the SNS topic subscription, the SNS_TOPIC_ARN environment variable, and the script for any errors.
 
-### Auto unsubscribe issue
+### Resolve Auto unsubscribe issue (Gmail)
 
-If you're running into gmail's spam filter automatically unsubscribing you, you should enable authentication to
+If you're finding that you're automatically unsubscribing but don't know why, you should enable authentication to
 unsubscribe. [See this AWS Post on how to do this.](https://repost.aws/knowledge-center/prevent-unsubscribe-all-sns-topic)
