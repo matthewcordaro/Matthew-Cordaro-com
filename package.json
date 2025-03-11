@@ -23,5 +23,13 @@
     "tabWidth": 2,
     "trailingComma": "none",
     "semi": false
+  },
+  "pnpm": {
+    "ignoredBuiltDependencies": [
+      "aws-sdk"
+    ],
+    "onlyBuiltDependencies": [
+      "aws-sdk"
+    ]
   }
 }
