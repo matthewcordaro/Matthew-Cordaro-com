@@ -19,11 +19,11 @@ const run = async () => {
     if (notificationBranches.includes(branchName)) {
         let message;
         if (buildStatus === 'SUCCEED') {
-            message = `✅ Successful deployment to ${branchName}!\n` +
-                `🚀 The build and deployment completed successfully.`;
+            message = `✅ Successful build of ${branchName}!\n` +
+                `🚀 The build completed successfully. Deploying now.`;
         } else if (buildStatus === 'FAILED') {
-            message = `❌ Failed deployment to ${branchName}!\n` +
-                `⚠️ The build or deployment encountered issues.\n\n` +
+            message = `❌ Failed build of ${branchName}!\n` +
+                `⚠️ The build encountered issues.\n\n` +
                 `Build Logs:\n${buildLogs || 'No logs available'}`;  // Include logs in failure message
         } else {
             console.log(JSON.stringify({
