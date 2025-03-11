@@ -1,14 +1,10 @@
 # Matthew Cordaro's  Portfolio Site
 
-My portfolio is built with **Next.js**
+My portfolio is built with **Next.js** running on **[AWS Amplify](https://us-east-1.console.aws.amazon.com/amplify)**
 
 ## Capabilities ##
 
 - Automatically configured to handle Markdown/MDX [Nextra](https://nextra.vercel.app/)
-- Generates an RSS feed based on your posts
-- A beautiful theme included out of the box
-- Easily categorize posts with tags
+- Generates an RSS feed for my posts
+- Categorized posts with tags
 - Fast, optimized web font loading
-
-### Bootstrapping ###
-by [Vercel](https://vercel.com/templates/next.js/portfolio-starter-kit)

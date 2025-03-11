@@ -54,10 +54,24 @@ img.next-image {
   margin: 0;
 }
 
-.prose a {
-  color: #0074de;
+:root {
+  --main-content-width: 80rem;
 }
 
-.nav-line .nav-link {
-  color: #69778c;
+.nx-mx-auto {
+  max-width: var(--main-content-width) !important;
+}
+
+.nx-container {
+  max-width: var(--main-content-width) !important;
+  padding: 5rem;
+}
+
+/* Remove padding on mobile devices */
+@media screen and (max-width: 768px) {
+  .nx-mx-auto,
+  .nx-container {
+    padding: 2rem;
+    max-width: 100% !important;
+  }
 }
