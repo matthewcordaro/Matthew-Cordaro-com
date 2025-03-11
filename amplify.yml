@@ -17,3 +17,17 @@ frontend:
     paths:
       - node_modules/**/*
       - .next/cache/**/*
+  customRules:
+    - source: '</^[^.]+$|\\.(?!(css|gif|ico|jpg|js|png|txt|svg|woff|ttf|map|json)$)([^.]+$)/'
+      target: '/404'
+      status: '404'
+      condition: 'NOT EXISTS'
+  customHeaders:
+    - pattern: '**/*'
+      headers:
+        - key: 'Cache-Control'
+          value: 'public, max-age=0, must-revalidate'
+        - key: 'Strict-Transport-Security'
+          value: 'max-age=31536000; includeSubDomains'
+        - key: 'X-Frame-Options'
+          value: 'SAMEORIGIN'
