@@ -1,23 +1,32 @@
 ---
-title: "AWS: Setting up Amplify Deployment Notifications via SNS"
+title: "AWS: Setting up Amplify Deployment Notifications via SNS (OUTDATED)"
 date: 2025/3/10
 description: How to Set Up Email Notifications for AWS Amplify Deployments Using Amazon SNS
 tag: AWS, Amplify, SNS 
 author: Matthew Cordaro
 ---
 
-# AWS: Setting up Amplify Deployment Notifications via SNS
+# AWS: Setting up Amplify Deployment Notifications via SNS (OUTDATED)
+
+## THIS IS NOW OUTDATED AS THIS USES OUTDATED AMPLIFY v1 AND AWS-CLI v2
+
+**DO NOT USE THESE DIRECTIONS!  MOVE TO V2 & V3 respectively for custom hooks!**
+
 
 _How to Set Up Email Notifications for AWS Amplify Deployments Using Amazon SNS_
 
-AWS Amplify simplifies the process of building, deploying, and hosting web applications. But wouldn’t it be great if you could get real-time email notifications for successful or failed deployments? In this guide, we’ll show you how to integrate Amazon Simple Notification Service (SNS) with Amplify to receive email alerts—while keeping sensitive data, like your SNS topic ARN, secure by using environment variables.
+**AWS Amplify** simplifies the process of building, deploying, and hosting web applications. But wouldn’t it be 
+great if you could get real-time email notifications for successful or failed deployments? In this guide, I’ll show 
+you how to integrate **Amazon Simple Notification Service (SNS)** with **Amplify** to receive email alerts—while keeping sensitive data secure by using environment variables.
+
+_Note: This guide assumes you have `aws-sdk` installed._
 
 ## Create an SNS Topic
 
 Start by creating an Amazon SNS topic that will send deployment notifications.
 
-1. Go to the Amazon SNS Console
-2. Click Create topic and choose _Standard_ as the type
+1. Go to the _Amazon SNS_ Console
+2. Click _Create topic_ and choose _Standard_ as the type
 3. Give your topic a _Name_, like `AmplifyDeploymentNotifications`
 4. Click _Create topic_
 5. Note the _ARN_, you will need it for later.
@@ -75,12 +84,12 @@ store it as an environment variable in Amplify.
 5. Set the _Variable_ to `SNS_TOPIC_ARN` and _Value_ to the ARN of your SNS topic
 6. Click _Save_ the environment variable.
 
-## Create a `post-deploy` Hook in Amplify
+## Create a `post-build` Hook in Amplify
 
-AWS Amplify supports lifecycle hooks that run custom scripts after deployments. Use the post-deploy hook to publish messages to your SNS topic.
+AWS Amplify supports lifecycle hooks that run custom scripts after deployments. Use the post-build hook to publish messages to your SNS topic.
 
 1. Create and navigate to the `amplify/hooks` folder in your project.
-2. Create or update the `post-deploy.js` file with the following code:
+2. Create or update the `post-build.js` file with the following code:
     ```javascript
     const AWS = require('aws-sdk');
     const sns = new AWS.SNS();
@@ -161,9 +170,15 @@ deploy notifications for.
 
 ## Test
 
-Amplify should now be executing the `post-deploy.js` script after any deployment is complete. Check your email inbox for notifications when deploying the set branches. If you don't receive an email, double-check the SNS topic subscription, the SNS_TOPIC_ARN environment variable, and the script for any errors.
+Amplify should now be executing the `post-build.js` script after any deployment is complete. Check your email inbox 
+for notifications when deploying the branches you set. If you don't receive an email, double-check the SNS topic 
+subscription, the SNS_TOPIC_ARN environment variable, and the script for any errors.
 
-### Resolve Auto unsubscribe issue (Gmail)
+### Known Issues
+
+#### Resolve Auto unsubscribe issue (Gmail)
 
 If you're finding that you're automatically unsubscribing but don't know why, you should enable authentication to
 unsubscribe. [See this AWS Post on how to do this.](https://repost.aws/knowledge-center/prevent-unsubscribe-all-sns-topic)
+
+#### 
