@@ -14,7 +14,7 @@ const run = async () => {
         buildStatus,
         isNotificationBranch: notificationBranches.includes(branchName)
     };
-    const message = "Deploying " + branchName + "...";
+    const message = "Building " + branchName + "...";
 
     if (notificationBranches.includes(branchName)) {
         const params = {
